@@ -778,6 +778,11 @@
                 closeMemberModal();
             }
         });
+        if (window.location.pathname.endsWith(".html")) {
+            let cleanURL = window.location.pathname.replace(".html", "");
+            window.history.replaceState(null, "", cleanURL);
+        }
+
     </script>
 </body>
 </html>
