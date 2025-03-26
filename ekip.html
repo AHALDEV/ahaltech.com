@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="logos/ahaltechlogo.png">
+    <title>AHALTECH - Ekibimiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #06B6D4;
+            --primary-dark: #0891B2;
+            --dark: #0F172A;
+            --darker: #020617;
+            --light: #F8FAFC;
+            --gray: #94A3B8;
+            --border: rgba(148, 163, 184, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            background: rgba(2, 6, 23, 0.95);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .navbar-logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .navbar-logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            background: linear-gradient(to right, var(--primary), #5EEAD4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-item {
+            margin-left: 2rem;
+        }
+
+        .navbar-link {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .navbar-link:hover {
+            color: var(--light);
+        }
+
+        .navbar-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .navbar-link:hover::after {
+            width: 100%;
+        }
+
+        .navbar-link.active {
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+            color: var(--light);
+            text-align: center;
+            padding: 80px 20px 40px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--border);
+            margin-top: 80px;
+        }
+
+        .header-logo {
+            width: 80px;
+            height: 80px;
+            background-image: url('logos/ahaltechlogo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.3));
+        }
+
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(to right, var(--primary), #5EEAD4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .slogan-container {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+            margin-top: 0.5rem;
+            position: relative;
+        }
+
+        /* Ekip Sayfası Özel Stiller */
+        .teams-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-card {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(6, 182, 212, 0.2);
+        }
+
+        .team-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .team-content {
+            padding: 1.5rem;
+        }
+
+        .team-title {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-description {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        /* Takım Detay Modal */
+        .team-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(2, 6, 23, 0.9);
+            z-index: 2000;
+            overflow-y: auto;
+            backdrop-filter: blur(5px);
+        }
+
+        .team-modal-content {
+            background: var(--darker);
+            max-width: 900px;
+            margin: 3rem auto;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .team-modal-header {
+            padding: 1.5rem 2rem;
+            background: rgba(6, 182, 212, 0.1);
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .team-modal-title {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary);
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            font-size: 1.5rem;
+            color: var(--gray);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+        }
+
+        .team-modal-body {
+            padding: 2rem;
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .member-card {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .member-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(6, 182, 212, 0.2);
+        }
+
+        .member-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .member-info {
+            padding: 1.2rem;
+        }
+
+        .member-name {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .member-position {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Üye Detay Modal */
+        .member-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(2, 6, 23, 0.95);
+            z-index: 3000;
+            overflow-y: auto;
+            backdrop-filter: blur(8px);
+        }
+
+        .member-modal-content {
+            background: var(--darker);
+            max-width: 700px;
+            margin: 3rem auto;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .member-modal-header {
+            padding: 1.5rem 2rem;
+            background: rgba(6, 182, 212, 0.1);
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .member-modal-title {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .member-modal-subtitle {
+            color: var(--gray);
+            font-size: 1rem;
+            margin-top: 0.3rem;
+        }
+
+        .member-modal-body {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .member-modal-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            border: 3px solid var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .member-modal-description {
+            color: var(--gray);
+            line-height: 1.8;
+            text-align: center;
+            max-width: 600px;
+            margin-bottom: 1.5rem;
+        }
+
+        .member-skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .skill-item {
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--primary);
+        }
+
+        footer {
+            background: var(--dark);
+            color: var(--light);
+            text-align: center;
+            padding: 2.5rem 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        footer p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        /* Responsive Tasarım */
+        @media screen and (max-width: 768px) {
+            .teams-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-modal-content, .member-modal-content {
+                margin: 1rem;
+            }
+            
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .member-modal-body {
+                padding: 1.5rem;
+            }
+            
+            .member-modal-image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <img src="logos/ahaltechlogo.png" alt="Ahaltech Logo">
+                <span class="navbar-logo-text">AHALTECH</span>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                ☰
+            </button>
+            
+            <ul class="navbar-menu" id="navbarMenu">
+                <li class="navbar-item">
+                    <a href="index.html" class="navbar-link">Ana Sayfa</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="projects.html" class="navbar-link">Projeler</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="ekip.html" class="navbar-link active">Ekip</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="ileitism.html" class="navbar-link">İletişim</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <div class="header-logo"></div>
+        <h1>Ekibimiz</h1>
+        <div class="slogan-container">
+            Yetenekli Takımımızla Tanışın
+        </div>
+    </header>
+
+    <div class="teams-container">
+        <div class="teams-grid">
+            <!-- Yazılım Ekibi -->
+            <div class="team-card" onclick="openTeamModal('software')">
+                <div class="team-image" style="background-image: url('logos/ahaldevlogo.png')"></div>
+                <div class="team-content">
+                    <h3 class="team-title">Yazılım Ekibi</h3>
+                    <p class="team-description">Yapay zeka, algoritma ve uygulama geliştirme ekibi</p>
+                </div>
+            </div>
+            
+            <!-- Mekanik Ekibi -->
+            <div class="team-card" onclick="openTeamModal('mechanical')">
+                <div class="team-image" style="background-image: url('pictures/mekanik-ekibi.jpg')"></div>
+                <div class="team-content">
+                    <h3 class="team-title">Mekanik Ekibi</h3>
+                    <p class="team-description">Mekanik tasarım ve üretim ekibimiz</p>
+                </div>
+            </div>
+            
+            <!-- Elektrik Ekibi -->
+            <div class="team-card" onclick="openTeamModal('electrical')">
+                <div class="team-image" style="background-image: url('pictures/elektrik-ekibi.jpg')"></div>
+                <div class="team-content">
+                    <h3 class="team-title">Elektrik Ekibi</h3>
+                    <p class="team-description">Elektronik sistemler ve devre tasarımı ekibimiz</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Yazılım Ekibi Modal -->
+    <div id="softwareTeamModal" class="team-modal">
+        <div class="team-modal-content">
+            <div class="team-modal-header">
+                <h2 class="team-modal-title">Yazılım Ekibi</h2>
+                <span class="close-modal" onclick="closeTeamModal()">&times;</span>
+            </div>
+            <div class="team-modal-body">
+                <p style="color: var(--gray);">Yapay zeka, makine öğrenmesi, bilgisayarlı görü ve uygulama geliştirme alanlarında uzmanlaşmış ekibimiz, projelerimizin dijital yüzünü oluşturuyor.</p>
+                
+                <div class="members-grid">
+                    <!-- Üye 1 -->
+                    <div class="member-card" onclick="openMemberModal('ali-yilmaz')">
+                        <div class="member-image" style="background-image: url('pictures/ali-yilmaz.jpg')"></div>
+                        <div class="member-info">
+                            <h4 class="member-name">Samet Ünsal</h4>
+                            <p class="member-position">Yapay Zeka Takım Lideri</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Üye 2 -->
+                    <div class="member-card" onclick="openMemberModal('ayse-kaya')">
+                        <div class="member-image" style="background-image: url('pictures/ayse-kaya.jpg')"></div>
+                        <div class="member-info">
+                            <h4 class="member-name">Ayşe Kaya</h4>
+                            <p class="member-position">Full Stack Developer</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Üye 3 -->
+                    <div class="member-card" onclick="openMemberModal('mehmet-demir')">
+                        <div class="member-image" style="background-image: url('pictures/mehmet-demir.jpg')"></div>
+                        <div class="member-info">
+                            <h4 class="member-name">Mehmet Demir</h4>
+                            <p class="member-position">Veri Bilimci</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mekanik Ekibi Modal -->
+    <div id="mechanicalTeamModal" class="team-modal">
+        <div class="team-modal-content">
+            <div class="team-modal-header">
+                <h2 class="team-modal-title">Mekanik Ekibi</h2>
+                <span class="close-modal" onclick="closeTeamModal()">&times;</span>
+            </div>
+            <div class="team-modal-body">
+                <p style="color: var(--gray);">Mekanik tasarım, CAD modelleme ve üretim süreçlerinde uzmanlaşmış ekibimiz, projelerimizin fiziksel dünyadaki yüzünü şekillendiriyor.</p>
+                
+                <div class="members-grid">
+                    <!-- Üye 1 -->
+                    <div class="member-card" onclick="openMemberModal('okan-sahin')">
+                        <div class="member-image" style="background-image: url('pictures/okan-sahin.jpg')"></div>
+                        <div class="member-info">
+                            <h4 class="member-name">Okan Şahin</h4>
+                            <p class="member-position">Mekanik Tasarım Müdürü</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Üye 2 -->
+                    <div class="member-card" onclick="openMemberModal('zeynep-arslan')">
+                        <div class="member-image" style="background-image: url('pictures/zeynep-arslan.jpg')"></div>
+                        <div class="member-info">
+                            <h4 class="member-name">Zeynep Arslan</h4>
+                            <p class="member-position">CAD Uzmanı</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Üye 3 -->
+                    <div class="member-card" onclick="openMemberModal('burak-koc')">
+                        <div class="member-image" style="background-image: url('pictures/burak-koc.jpg')"></div>
+                        <div class="member-info">
+                            <h4 class="member-name">Burak Koç</h4>
+                            <p class="member-position">Üretim Mühendisi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Elektrik Ekibi Modal -->
+    <div id="electricalTeamModal" class="team-modal">
+        <div class="team-modal-content">
+            <div class="team-modal-header">
+                <h2 class="team-modal-title">Elektrik Ekibi</h2>
+                <span class="close-modal" onclick="closeTeamModal()">&times;</span>
+            </div>
+            <div class="team-modal-body">
+                <p style="color: var(--gray);">Elektronik sistem tasarımı, PCB geliştirme ve gömülü sistemler konusunda uzmanlaşmış ekibimiz, projelerimizin elektronik altyapısını oluşturuyor.</p>
+                
+                <div class="members-grid">
+                    <!-- Üye 1 -->
+                    <div class="member-card" onclick="openMemberModal('deniz-akbulut')">
+                        <div class="member-image" style="background-image: url('pictures/deniz-akbulut.jpg')"></div>
+                        <div class="member-info">
+                            <h4 class="member-name">Deniz Akbulut</h4>
+                            <p class="member-position">Elektronik Mühendisi</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Üye 2 -->
+                    <div class="member-card" onclick="openMemberModal('emre-celik')">
+                        <div class="member-image" style="background-image: url('pictures/emre-celik.jpg')"></div>
+                        <div class="member-info">
+                            <h4 class="member-name">Emre Çelik</h4>
+                            <p class="member-position">Gömülü Sistemler Uzmanı</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Üye 3 -->
+                    <div class="member-card" onclick="openMemberModal('selin-ozturk')">
+                        <div class="member-image" style="background-image: url('pictures/selin-ozturk.jpg')"></div>
+                        <div class="member-info">
+                            <h4 class="member-name">Selin Öztürk</h4>
+                            <p class="member-position">PCB Tasarım Mühendisi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Üye Detay Modal -->
+    <div id="memberModal" class="member-modal">
+        <div class="member-modal-content">
+            <div class="member-modal-header">
+                <h2 class="member-modal-title" id="memberName">Ali Yılmaz</h2>
+                <p class="member-modal-subtitle" id="memberPosition">Yapay Zeka Takım Lideri</p>
+                <span class="close-modal" onclick="closeMemberModal()">&times;</span>
+            </div>
+            <div class="member-modal-body">
+                <div class="member-modal-image" id="memberImage"></div>
+                <p class="member-modal-description" id="memberDescription">
+                    <!-- JavaScript ile doldurulacak -->
+                </p>
+                <h3 style="color: var(--primary); margin-top: 1rem;">Yetenekler</h3>
+                <div class="member-skills" id="memberSkills">
+                    <!-- JavaScript ile doldurulacak -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Ahaltech. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navbarMenu = document.getElementById('navbarMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navbarMenu.classList.toggle('active');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Takım Modal Fonksiyonları
+        function openTeamModal(team) {
+            document.getElementById(`${team}TeamModal`).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeTeamModal() {
+            const modals = document.querySelectorAll('.team-modal');
+            modals.forEach(modal => {
+                modal.style.display = 'none';
+            });
+            document.body.style.overflow = 'auto';
+        }
+
+        // Üye Detay Modal Fonksiyonları
+        function openMemberModal(memberId) {
+            // Burada gerçek veriler kullanılmalı, örnek olarak:
+            const members = {
+                'ali-yilmaz': {
+                    name: 'Ali Yılmaz',
+                    position: 'Yapay Zeka Takım Lideri',
+                    image: 'pictures/ali-yilmaz.jpg',
+                    description: '10 yılı aşkın süredir yapay zeka alanında çalışan Ali, özellikle derin öğrenme ve doğal dil işleme konularında uzmanlaşmıştır. Stanford Üniversitesi\'nde yapay zeka alanında doktora yapmıştır.',
+                    skills: ['Python', 'TensorFlow', 'PyTorch', 'NLP', 'Makine Öğrenmesi']
+                },
+                'ayse-kaya': {
+                    name: 'Ayşe Kaya',
+                    position: 'Full Stack Developer',
+                    image: 'pictures/ayse-kaya.jpg',
+                    description: 'Full stack development konusunda 8 yıllık deneyime sahip Ayşe, özellikle React ve Node.js teknolojilerinde uzmandır. Ahaltech\'in kullanıcı arayüzlerinin büyük kısmını geliştirmiştir.',
+                    skills: ['JavaScript', 'React', 'Node.js', 'MongoDB', 'GraphQL']
+                },
+                // Diğer üyeler için benzer şekilde ekleyin...
+            };
+
+            const member = members[memberId];
+            if (member) {
+                document.getElementById('memberName').textContent = member.name;
+                document.getElementById('memberPosition').textContent = member.position;
+                document.getElementById('memberImage').style.backgroundImage = `url('${member.image}')`;
+                document.getElementById('memberDescription').textContent = member.description;
+                
+                const skillsContainer = document.getElementById('memberSkills');
+                skillsContainer.innerHTML = '';
+                member.skills.forEach(skill => {
+                    const skillElement = document.createElement('span');
+                    skillElement.className = 'skill-item';
+                    skillElement.textContent = skill;
+                    skillsContainer.appendChild(skillElement);
+                });
+
+                document.getElementById('memberModal').style.display = 'block';
+            }
+        }
+
+        function closeMemberModal() {
+            document.getElementById('memberModal').style.display = 'none';
+        }
+
+        // Dışarı tıklayınca modalı kapat
+        window.onclick = function(event) {
+            const teamModals = document.querySelectorAll('.team-modal');
+            teamModals.forEach(modal => {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            if (event.target == document.getElementById('memberModal')) {
+                closeMemberModal();
+            }
+        }
+
+        // Klavyeden ESC ile kapatma
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeTeamModal();
+                closeMemberModal();
+            }
+        });
+    </script>
+</body>
+</html>
