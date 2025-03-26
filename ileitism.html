@@ -567,6 +567,11 @@
             alert('Mesajınız başarıyla gönderildi! En kısa sürede sizinle iletişime geçeceğiz.');
             this.reset();
         });
+    if (window.location.pathname.endsWith(".html")) {
+        let cleanURL = window.location.pathname.replace(".html", "");
+        window.history.replaceState(null, "", cleanURL);
+    }
+
     </script>
 </body>
 </html>
