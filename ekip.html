@@ -130,6 +130,7 @@
             color: var(--light);
             font-size: 1.5rem;
             cursor: pointer;
+            z-index: 1001;
         }
 
         header {
@@ -455,6 +456,68 @@
                 width: 150px;
                 height: 150px;
             }
+            
+            /* Mobil menü stilleri */
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .navbar-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--darker);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                transition: all 0.5s ease;
+                z-index: 1000;
+            }
+            
+            .navbar-menu.active {
+                left: 0;
+            }
+            
+            .navbar-item {
+                margin: 1rem 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .navbar-link {
+                display: block;
+                padding: 1rem;
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .navbar-logo-text {
+                font-size: 1.1rem;
+            }
+            
+            .navbar-logo img {
+                height: 30px;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .team-title {
+                font-size: 1.3rem;
+            }
+            
+            .team-modal-title {
+                font-size: 1.5rem;
+            }
+            
+            .member-modal-title {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -685,6 +748,16 @@
         
         mobileMenuBtn.addEventListener('click', () => {
             navbarMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navbarMenu.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Menü linklerine tıklandığında menüyü kapat
+        const navLinks = document.querySelectorAll('.navbar-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navbarMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '☰';
+            });
         });
 
         // Navbar scroll effect
@@ -778,11 +851,11 @@
                 closeMemberModal();
             }
         });
+        
         if (window.location.pathname.endsWith(".html")) {
             let cleanURL = window.location.pathname.replace(".html", "");
             window.history.replaceState(null, "", cleanURL);
         }
-
     </script>
 </body>
 </html>
