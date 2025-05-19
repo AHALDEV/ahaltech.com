@@ -130,7 +130,6 @@
             color: var(--light);
             font-size: 1.5rem;
             cursor: pointer;
-            z-index: 1001;
         }
 
         header {
@@ -456,68 +455,6 @@
                 width: 150px;
                 height: 150px;
             }
-            
-            /* Mobil menü stilleri */
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .navbar-menu {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background: var(--darker);
-                flex-direction: column;
-                align-items: center;
-                justify-content: flex-start;
-                padding-top: 2rem;
-                transition: all 0.5s ease;
-                z-index: 1000;
-            }
-            
-            .navbar-menu.active {
-                left: 0;
-            }
-            
-            .navbar-item {
-                margin: 1rem 0;
-                width: 100%;
-                text-align: center;
-            }
-            
-            .navbar-link {
-                display: block;
-                padding: 1rem;
-                font-size: 1.2rem;
-            }
-        }
-        
-        @media screen and (max-width: 480px) {
-            .navbar-logo-text {
-                font-size: 1.1rem;
-            }
-            
-            .navbar-logo img {
-                height: 30px;
-            }
-            
-            header h1 {
-                font-size: 1.8rem;
-            }
-            
-            .team-title {
-                font-size: 1.3rem;
-            }
-            
-            .team-modal-title {
-                font-size: 1.5rem;
-            }
-            
-            .member-modal-title {
-                font-size: 1.5rem;
-            }
         }
     </style>
 </head>
@@ -526,11 +463,8 @@
     <nav class="navbar">
         <div class="navbar-container">
             <div class="navbar-logo">
-                <a href="index.html">
                 <img src="logos/ahaltechlogo.png" alt="Ahaltech Logo">
-                </a>
                 <span class="navbar-logo-text">AHALTECH</span>
-                
             </div>
             
             <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -601,33 +535,68 @@
                 <span class="close-modal" onclick="closeTeamModal()">&times;</span>
             </div>
             <div class="team-modal-body">
-                <p style="color: var(--gray);">Yapay zeka, makine öğrenmesi, bilgisayarlı görü ve uygulama geliştirme alanlarında çalışan ekibimiz, projelerimizin dijital yüzünü oluşturuyor.</p>
+                <p style="color: var(--gray);">Yapay zeka, makine öğrenmesi, bilgisayarlı görü ve uygulama geliştirme alanlarında uzmanlaşmış ekibimiz, projelerimizin dijital yüzünü oluşturuyor.</p>
                 
                 <div class="members-grid">
                     <!-- Üye 1 -->
-                    <div class="member-card" onclick="openMemberModal('ali-yilmaz')">
-                        <div class="member-image" style="background-image: url('pictures/ali-yilmaz.jpg')"></div>
+                    <div class="member-card" onclick="openMemberModal('samet-unsal')">
+                        <div class="member-image" style="background-image: url('pictures/samet_unsal.jpg')"></div>
                         <div class="member-info">
                             <h4 class="member-name">Samet Ünsal</h4>
-                            <p class="member-position">Yazılım EkibiTakım Lideri</p>
+                            <p class="member-position">Ekip Lideri</p>
                         </div>
                     </div>
                     
                     <!-- Üye 2 -->
-                    <div class="member-card" onclick="openMemberModal('ayse-kaya')">
-                        <div class="member-image" style="background-image: url('pictures/ayse-kaya.jpg')"></div>
+                    <div class="member-card" onclick="openMemberModal('halil-abaci')">
+                        <div class="member-image" style="background-image: url('pictures/halil_abaci.jpg')"></div>
                         <div class="member-info">
-                            <h4 class="member-name">Ayşe Kaya</h4>
-                            <p class="member-position">Full Stack Developer</p>
+                            <h4 class="member-name">Halil Abacı</h4>
+                            <p class="member-position">Ekip Üyesi</p>
                         </div>
                     </div>
                     
                     <!-- Üye 3 -->
-                    <div class="member-card" onclick="openMemberModal('mehmet-demir')">
+                    <div class="member-card" onclick="openMemberModal('ceren-tolunay')">
                         <div class="member-image" style="background-image: url('pictures/mehmet-demir.jpg')"></div>
                         <div class="member-info">
-                            <h4 class="member-name">Mehmet Demir</h4>
-                            <p class="member-position">Veri Bilimci</p>
+                            <h4 class="member-name">Ceren Tolunay</h4>
+                            <p class="member-position">Ekip Üyesi</p>
+                        </div>
+                    </div>
+                    <div class="member-card" onclick="openMemberModal('ozgur-umut')">
+                        <div class="member-image" style="background-image: url('pictures/ozgur_umut.jpg')"></div>
+                        <div class="member-info">
+                            <h4 class="member-name">Özgür Umut Pirinç</h4>
+                            <p class="member-position">Ekip Üyesi</p>
+                        </div>
+                    </div>
+                    <div class="member-card" onclick="openMemberModal('ege-uzunkaya')">
+                        <div class="member-image" style="background-image: url('pictures/mehmet-demir.jpg')"></div>
+                        <div class="member-info">
+                            <h4 class="member-name">Ege Uzunkaya</h4>
+                            <p class="member-position">Ekip Üyesi</p>
+                        </div>
+                    </div>
+                    <div class="member-card" onclick="openMemberModal('fatmanur-bulut')">
+                        <div class="member-image" style="background-image: url('pictures/fatmanur_bulut.jpeg')"></div>
+                        <div class="member-info">
+                            <h4 class="member-name">Fatmanur Bulut</h4>
+                            <p class="member-position">Ekip Üyesi</p>
+                        </div>
+                    </div>
+                    <div class="member-card" onclick="openMemberModal('hilal-ay')">
+                        <div class="member-image" style="background-image: url('pictures/hilal_ay.jpg')"></div>
+                        <div class="member-info">
+                            <h4 class="member-name">Hilal Ay</h4>
+                            <p class="member-position">Ekip Üyesi</p>
+                        </div>
+                    </div>
+                    <div class="member-card" onclick="openMemberModal('ozgur-dagli')">
+                        <div class="member-image" style="background-image: url('pictures/mehmet-demir.jpg')"></div>
+                        <div class="member-info">
+                            <h4 class="member-name">Özgür Dağlı</h4>
+                            <p class="member-position">Ekip Üyesi</p>
                         </div>
                     </div>
                 </div>
@@ -647,29 +616,36 @@
                 
                 <div class="members-grid">
                     <!-- Üye 1 -->
-                    <div class="member-card" onclick="openMemberModal('okan-sahin')">
+                    <div class="member-card" onclick="openMemberModal('arda-orekci')">
                         <div class="member-image" style="background-image: url('pictures/okan-sahin.jpg')"></div>
                         <div class="member-info">
-                            <h4 class="member-name">Okan Şahin</h4>
-                            <p class="member-position">Mekanik Tasarım Müdürü</p>
+                            <h4 class="member-name">Arda Örekçi</h4>
+                            <p class="member-position">Ekip Lideri</p>
                         </div>
                     </div>
                     
-                    <!-- Üye 2 -->
-                    <div class="member-card" onclick="openMemberModal('zeynep-arslan')">
-                        <div class="member-image" style="background-image: url('pictures/zeynep-arslan.jpg')"></div>
+                    
+                    <div class="member-card" onclick="openMemberModal('gokalp-aysoy')">
+                        <div class="member-image" style="background-image: url('pictures/gokalp_aysoy.jpg')"></div>
                         <div class="member-info">
-                            <h4 class="member-name">Zeynep Arslan</h4>
-                            <p class="member-position">CAD Uzmanı</p>
+                            <h4 class="member-name">Gökalp Aysoy</h4>
+                            <p class="member-position">Ekip Üyesi</p>
                         </div>
                     </div>
                     
-                    <!-- Üye 3 -->
-                    <div class="member-card" onclick="openMemberModal('burak-koc')">
-                        <div class="member-image" style="background-image: url('pictures/burak-koc.jpg')"></div>
+                    
+                    <div class="member-card" onclick="openMemberModal('ada-tomrukcu')">
+                        <div class="member-image" style="background-image: url('pictures/ada_tomrukcu.jpg')"></div>
                         <div class="member-info">
-                            <h4 class="member-name">Burak Koç</h4>
-                            <p class="member-position">Üretim Mühendisi</p>
+                            <h4 class="member-name">Ada Tomrukçu</h4>
+                            <p class="member-position">Ekip Üyesi</p>
+                        </div>
+                    </div>
+                    <div class="member-card" onclick="openMemberModal('bilge-gergin')">
+                        <div class="member-image" style="background-image: url('pictures/bilge_gergin.jpeg')"></div>
+                        <div class="member-info">
+                            <h4 class="member-name">Bilge Gergin</h4>
+                            <p class="member-position">Ekip Üyesi</p>
                         </div>
                     </div>
                 </div>
@@ -689,29 +665,29 @@
                 
                 <div class="members-grid">
                     <!-- Üye 1 -->
-                    <div class="member-card" onclick="openMemberModal('deniz-akbulut')">
+                    <div class="member-card" onclick="openMemberModal('melih-mutlu')">
                         <div class="member-image" style="background-image: url('pictures/deniz-akbulut.jpg')"></div>
                         <div class="member-info">
-                            <h4 class="member-name">Deniz Akbulut</h4>
-                            <p class="member-position">Elektronik Mühendisi</p>
+                            <h4 class="member-name">Melih Mutlu</h4>
+                            <p class="member-position">Ekip Lideri</p>
                         </div>
                     </div>
                     
                     <!-- Üye 2 -->
-                    <div class="member-card" onclick="openMemberModal('emre-celik')">
-                        <div class="member-image" style="background-image: url('pictures/emre-celik.jpg')"></div>
+                    <div class="member-card" onclick="openMemberModal('gokdeniz-yildirim')">
+                        <div class="member-image" style="background-image: url('pictures/gokdeniz_yildirim.jpg')"></div>
                         <div class="member-info">
-                            <h4 class="member-name">Emre Çelik</h4>
-                            <p class="member-position">Gömülü Sistemler Uzmanı</p>
+                            <h4 class="member-name">Gökdeniz Yıldırım</h4>
+                            <p class="member-position">Ekip Üyesi</p>
                         </div>
                     </div>
                     
                     <!-- Üye 3 -->
-                    <div class="member-card" onclick="openMemberModal('selin-ozturk')">
-                        <div class="member-image" style="background-image: url('pictures/selin-ozturk.jpg')"></div>
+                    <div class="member-card" onclick="openMemberModal('emirhan-eyidemir')">
+                        <div class="member-image" style="background-image: url('pictures/emirhan_eyidemir.jpg')"></div>
                         <div class="member-info">
-                            <h4 class="member-name">Selin Öztürk</h4>
-                            <p class="member-position">PCB Tasarım Mühendisi</p>
+                            <h4 class="member-name">Emirhan Eyidemir</h4>
+                            <p class="member-position">Ekip Üyesi</p>
                         </div>
                     </div>
                 </div>
@@ -724,7 +700,7 @@
         <div class="member-modal-content">
             <div class="member-modal-header">
                 <h2 class="member-modal-title" id="memberName">Samet Ünsal</h2>
-                <p class="member-modal-subtitle" id="memberPosition">Yazılım Ekibi Takım Lideri</p>
+                <p class="member-modal-subtitle" id="memberPosition">Ekip Lideri</p>
                 <span class="close-modal" onclick="closeMemberModal()">&times;</span>
             </div>
             <div class="member-modal-body">
@@ -751,16 +727,6 @@
         
         mobileMenuBtn.addEventListener('click', () => {
             navbarMenu.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navbarMenu.classList.contains('active') ? '✕' : '☰';
-        });
-
-        // Menü linklerine tıklandığında menüyü kapat
-        const navLinks = document.querySelectorAll('.navbar-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navbarMenu.classList.remove('active');
-                mobileMenuBtn.innerHTML = '☰';
-            });
         });
 
         // Navbar scroll effect
@@ -787,25 +753,45 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Üye Detay Modal Fonksiyonları
+        
         function openMemberModal(memberId) {
-            // Burada gerçek veriler kullanılmalı, örnek olarak:
+            
             const members = {
-                'ali-yilmaz': {
+                'samet-unsal': {
                     name: 'Samet Ünsal',
-                    position: 'Yazılım Ekibi Takım Lideri',
-                    image: 'pictures/ali-yilmaz.jpg',
-                    description: 'Bilgisayar Mühendisliği öğrencisi Samet, özellikle derin öğrenme üzerine çalışmaktadır. İzmir Katip Çelebi Üniversitesi\'nde Bilgisayar Mühendisliği lisans öğrencisidir.',
-                    skills: ['Python', 'TensorFlow', 'PyTorch', 'NLP', 'Makine Öğrenmesi']
+                    position: 'Ekip Lideri',
+                    image: 'pictures/samet_unsal.jpg',
+                    description: 'İzmir Katip Çelebi Üniversitesi bilgisayar mühendisliği öğrencisi Samet, 3 yıldır yapay zeka üzerine araştırmalar yapıyor ve 1 senedir Ahaltech ekibi bünyesinde yazılım ekip liderliği yapmaktadır.',
+                    skills: ['Python', 'TensorFlow', 'PyTorch', 'NLP', 'Makine Öğrenmesi','C#','Java','C++','C','.Net','HTML5','CSS','Javascript']
                 },
-                'ayse-kaya': {
-                    name: 'Ayşe Kaya',
-                    position: 'Full Stack Developer',
-                    image: 'pictures/ayse-kaya.jpg',
-                    description: 'Full stack development konusunda 8 yıllık deneyime sahip Ayşe, özellikle React ve Node.js teknolojilerinde uzmandır. Ahaltech\'in kullanıcı arayüzlerinin büyük kısmını geliştirmiştir.',
-                    skills: ['JavaScript', 'React', 'Node.js', 'MongoDB', 'GraphQL']
+                'halil-abaci': {
+                    name: 'Halil Abacı',
+                    position: 'PID ve Haritalama Araştırmacısı',
+                    image: 'pictures/halil_abaci.jpg',
+                    description: 'İzmir Katip Çelebi Üniversitesi bilgisayar mühendisliği öğrencisi Halil, PID, haritalama ve SLAM algoritmaları üzerine çalışmalar yapmakta ve Ahaltech yazılım ekibi bünyesinde çalışmaktadır.',
+                    skills: ['Python', 'Java', 'C#', 'PID', 'SLAM']
                 },
-                // Diğer üyeler için benzer şekilde ekleyin...
+                'ozgur-umut': {
+                    name: 'Özgür Umut Pirinç',
+                    position: 'Bilgisayarlı Görü Araştırmacısı',
+                    image: 'pictures/ozgur_umut.jpg',
+                    description: 'İzmir Katip Çelebi Üniversitesi bilgisayar mühendisliği öğrencisi Özgür Umut, görüntü işleme algoritmaları üzerine çalışmalar yapmakta ve Ahaltech yazılım ekibi bünyesinde çalışmaktadır.',
+                    skills: ['Python', 'ComputerVision', 'YOLO','C#','Java','PyTorch','TensorFlow']
+                },
+                'fatmanur-bulut': {
+                    name: 'Fatmanur Bulut',
+                    position: 'PID ve Haritalama Araştırmacısı',
+                    image: 'pictures/fatmanur_bulut.jpeg',
+                    description: 'İzmir Katip Çelebi Üniversitesi bilgisayar mühendisliği öğrencisi Fatmanur, Robot Operating Systems(ROS) üzerine çalışmalar yapmakta ve Ahaltech yazılım ekibi bünyesinde çalışmaktadır.',
+                    skills: ['ROS', 'Ubuntu/Linux', 'Gazebo', 'Python', 'C++','C#','Java']
+                },
+                'hilal-ay': {
+                    name: 'Hilal Ay',
+                    position: 'SLAM, Navigasyon, PID ve Haritalama Araştırmacısı',
+                    image: 'pictures/hilal_ay.jpg',
+                    description: 'İzmir Katip Çelebi Üniversitesi bilgisayar mühendisliği öğrencisi Hilal, PID, haritalama, SLAM ve navigasyon algoritmaları üzerine çalışmalar yapmakta ve Ahaltech yazılım ekibi bünyesinde çalışmaktadır.',
+                    skills: ['Dijkstra', 'A*', 'Python', 'C#', 'Java','C','PID','SLAM']
+                },
             };
 
             const member = members[memberId];
@@ -854,11 +840,6 @@
                 closeMemberModal();
             }
         });
-        
-        if (window.location.pathname.endsWith(".html")) {
-            let cleanURL = window.location.pathname.replace(".html", "");
-            window.history.replaceState(null, "", cleanURL);
-        }
     </script>
 </body>
 </html>
