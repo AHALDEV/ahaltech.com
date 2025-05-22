@@ -495,6 +495,50 @@
             Yetenekli Takımımızla Tanışın
         </div>
     </header>
+    <div class="team-card" onclick="openTeamModal('management')">
+   p <div class="team-image" style="background-image: url('pictures/yonetim-ekibi.jpg')"></div>
+    <div class="team-content">
+        <h3 class="team-title">Yönetim Kadrosu</h3>
+        <p class="team-description">Strateji, liderlik ve yönetişim kadrosu</p>
+    </div>
+</div>
+
+<!-- Yönetim Ekibi Modal -->
+<div id="managementTeamModal" class="team-modal">
+    <div class="team-modal-content">
+        <div class="team-modal-header">
+            <h2 class="team-modal-title">Yönetim Kadrosu</h2>
+            <span class="close-modal" onclick="closeTeamModal()">&times;</span>
+        </div>
+        <div class="team-modal-body">
+            <p style="color: var(--gray);">Ahaltech'in stratejik kararlarını alan ve projeleri yöneten lider kadro.</p>
+
+            <div class="members-grid">
+                <div class="member-card" onclick="openMemberModal('eren-k')">
+                    <div class="member-image" style="background-image: url('pictures/eren_k.jpg')"></div>
+                    <div class="member-info">
+                        <h4 class="member-name">Eren K.</h4>
+                        <p class="member-position">Kurucu Ortak</p>
+                    </div>
+                </div>
+                <div class="member-card" onclick="openMemberModal('melih-mutlu')">
+                    <div class="member-image" style="background-image: url('pictures/melih_mutlu.jpg')"></div>
+                    <div class="member-info">
+                        <h4 class="member-name">Melih Mutlu</h4>
+                        <p class="member-position">Yönetim Sorumlusu</p>
+                    </div>
+                </div>
+                <div class="member-card" onclick="openMemberModal('tunay-cetin')">
+                    <div class="member-image" style="background-image: url('pictures/tunay_cetin.jpg')"></div>
+                    <div class="member-info">
+                        <h4 class="member-name">Tunay Çetin</h4>
+                        <p class="member-position">Kurucu Ortak</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
     <div class="teams-container">
         <div class="teams-grid">
