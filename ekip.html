@@ -884,6 +884,9 @@
                 closeMemberModal();
             }
         });
+    if (window.location.pathname.endsWith("ekip.html")) {
+        history.replaceState(null, '', '/ekip');
+    }
     </script>
 </body>
 </html>
